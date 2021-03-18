@@ -1,8 +1,19 @@
 version: '3'
 services:
+  frontend:
+    depends_on: 
+      - elastic
+      - crawler
+      - backend
+    build:
+      context: frontend/
+      args:
+        - REACT_APP_BACKEND_URL=http://localhost:4000
+    ports: 
+      - "80:80"   
   backend:
     environment:
-      - PORT=3000
+      - PORT=4000
       - ELASTIC_SEARCH_URL=http://elastic:9200
     depends_on: 
       - elastic
@@ -10,7 +21,7 @@ services:
     build:
       context: backend/
     ports: 
-      - "3000:3000" 
+      - "4000:4000" 
   crawler:
     environment:
       - ELASTIC_SEARCH_URL=http://elastic:9200

@@ -1,7 +1,10 @@
 import express from 'express';
 import ElasticSearchService from './elasticSearchService';
+import cors from 'cors';
 
 const app = express();
+
+app.use(cors());
 
 app.get('/coins/bySupplyAvailability',async (req,res) => {
     const size = Number(req.query.size) || 5;

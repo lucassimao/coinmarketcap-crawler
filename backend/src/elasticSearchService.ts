@@ -22,11 +22,12 @@ export default class ElasticSearchService {
               source: "doc['totalSupply'].value / doc['maxSupply'].value",
             },
             order: "desc"
-          }
+          },
+          totalSupply:'desc'
         }
       }
     })
-    return result?.body?.hits?.hits?.map((item: any) => item._source)
+    return result?.body?.hits?.hits?.map((item: any) => ({ ...item._source}))
   }
 
   static async listCoinsByMarketDominance(size: number): Promise<Coin[]> {
@@ -68,7 +69,7 @@ export default class ElasticSearchService {
       }
     })
 
-    return result?.body?.hits?.hits?.map((item: any) => ({ ...item._source, percent: (item._source.marketCap*100) / totalMarketCap }))
+    return result?.body?.hits?.hits?.map((item: any) => ({ ...item._source, percentage: (item._source.marketCap*100) / totalMarketCap }))
   }
 
   static async listCoinsByMaxSupply(size: number): Promise<Coin[]> {
