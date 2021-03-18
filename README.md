@@ -9,6 +9,9 @@ The react based frontend requests data from an expressjs based backend which by 
 at the root of the project:
 
 > docker-compose build
+
+and
+
 > docker-compose up
 
 This will build the crawler, backend, frontend and will set up an elastic search instance 
@@ -28,9 +31,9 @@ Inside the crawler folder:
 > npm run start:dev
 
 ### Tech stack
-Nodejs v15
-Typescript
-React
-pupetter
-elastic search v7.11
-
+* Nodejs v15
+* Typescript
+* React
+* pupetter
+* elastic search v7.11
+* Docker
