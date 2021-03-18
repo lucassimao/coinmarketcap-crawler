@@ -1,0 +1,22 @@
+version: '3'
+services:
+  crawler:
+    environment:
+      - ELASTIC_SEARCH_URL=http://elastic:9200
+      - NODE_ENV=production
+    depends_on: 
+      - elastic
+    build:
+      context: crawler/
+  elastic:
+    environment: 
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.2
+    ports: 
+      - "9200:9200"
+    volumes:
+      - elastic_search_data:/usr/share/elasticsearch/data
+volumes: 
+  elastic_search_data:
+    driver: local
