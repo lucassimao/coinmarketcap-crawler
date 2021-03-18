@@ -1,5 +1,16 @@
 version: '3'
 services:
+  backend:
+    environment:
+      - PORT=3000
+      - ELASTIC_SEARCH_URL=http://elastic:9200
+    depends_on: 
+      - elastic
+      - crawler
+    build:
+      context: backend/
+    ports: 
+      - "3000:3000" 
   crawler:
     environment:
       - ELASTIC_SEARCH_URL=http://elastic:9200
@@ -13,8 +24,8 @@ services:
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     image: docker.elastic.co/elasticsearch/elasticsearch:7.11.2
-    ports: 
-      - "9200:9200"
+    # ports: 
+      # - "9200:9200"
     volumes:
       - elastic_search_data:/usr/share/elasticsearch/data
 volumes: 
