@@ -5,6 +5,8 @@ We leverage an elastic search instance to store crypto currencies market data fr
 
 The react based frontend requests data from an expressjs based backend which by its turn fetches data from elastic search.
 
+[Quick demo](https://drive.google.com/file/d/17Ds9uEjNUTlMUdY74p0SUv2gFOddHJpO/view?usp=sharing)
+
 ### using docker-compose (easier way)
 at the root of the project:
 
